@@ -3,16 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>cdg.sh</title>
+  <title>URL Shrinker</title>
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech&display=swap" rel="stylesheet"> 
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="http://ez-css.now.sh/">
 </head>
 <body>
   <header>
       <h1>URL Shrinker</h1>
   </header>
   <main id="app">
-
+    <form @submit.prevent="createUrl()">
+      <input type="url" name="url" id="url" placeholder="Url" v-model="url" required>
+      <input type="text" name="slug" id="slug" placeholder="Slug" v-model="slug">
+      <button type="submit">Create</button>
+    </form>
+    <pre v-if="created">
+      {{JSON.stringify(created, null, 2)}}
+    </pre>
   </main>
   <script src="https://unpkg.com/vue@2.6.11/dist/vue.js"></script>
   <script src="app.js"></script>
