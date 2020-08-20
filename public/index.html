@@ -1,29 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>wadev</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHKN.link | URL Shortener</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+      .footer {
+       position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        color: white;
+        text-align: center;
+        background-color: transparent;
+      }
+    </style>
 </head>
+
 <body>
-  <header>
-    <img src="logo.png" class="logo">
-  </header>
-  <main id="app">
-    <form class="form" v-if="formVisible" @submit.prevent="createUrl()">
-      <div v-if="error" class="error">
-        {{error}}
-      </div>
-      <input class="input" type="text" v-model="url" name="url" id="url" placeholder="enter a url">
-      <input class="input" type="text" v-model="suffix" name="suffix" id="suffix" placeholder="enter a suffix">
-      <button type="submit" class="createButton">create</button>
-    </form>
-    <div v-if="created">
-      <p class="created">Your short url is: <a: href="created">{{created}}</a></p>
+    <header>
+        <img src="logo.png" class="logo">
+    </header>
+    <main id="app">
+        <form class="form" v-if="formVisible" @submit.prevent="createUrl()">
+            <div v-if="error" class="error">
+                ❌{{error.toUpperCase()}}❌
+            </div>
+            <input class="input" type="text" v-model="url" name="url" id="url" placeholder="enter a url">
+            <input class="input" type="text" v-model="suffix" name="egg" id="suffix" placeholder="enter a egg">
+            <button type="submit" class="createButton">create🍳</button>
+        </form>
+        <div v-if="created">
+            <p class="created" style="font-size: 1.1rem">🍳 Your short url is: <a :href="created">{{created}} 🍳</a></p>
+        </div>
+    </main>
+    <div class="footer">
+      <p>Copyright &copy; William Andersson</p>
+      <a href="http://www.freepik.com" style="color: #595959;">Chicken vector designed by sentavio / Freepik</a>
     </div>
-  </main>
-  <script src="https://unpkg.com/vue@2.6.11/dist/vue.js"></script>
-  <script src="app.js"></script>
+    
+    <script src="https://unpkg.com/vue@2.6.11/dist/vue.js"></script>
+    <script src="app.js"></script>
 </body>
+
 </html>
