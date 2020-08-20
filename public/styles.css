@@ -10,7 +10,7 @@ body {
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Consolas', sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -21,11 +21,30 @@ body {
 header {
   display: flex;
   justify-content: center;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
+  display: block;
+  text-align: center;
+}
+
+header h1{
+  font-weight: bolder;
+  font-size: 7rem;
+  color: #4e85df;
+}
+header h3{
+  font-weight: bolder;
+  font-size: 1.5rem;
+  margin-top: -1.7rem;
+  color: white;
+}
+header hr{
+  margin-top: 0.7rem;
+  color: white;
 }
 
 .logo {
-  max-width: 90%;
+  max-width: 25rem;
+  min-width: 18rem;
   image-rendering: -moz-crisp-edges;
 }
 
@@ -58,12 +77,12 @@ header {
   text-align: center;
   font-size: 1.25rem;
   transition: border-bottom-color 0.3s ease-in-out;
-  caret-color: #56BC58;
+  caret-color: #4e85df;
 }
 
 .input:focus {
   outline: none;
-  border-bottom-color: #56BC58;
+  border-bottom-color: #4e85df;
 }
 
 .input::placeholder {
@@ -74,17 +93,20 @@ header {
 .createButton {
   cursor: pointer;
   font-family: inherit;
+  font-weight: bolder;
   font-size: 1.15rem;
   color: #262626;
   border: none;
-  background-color: #56BC58;
+  background-color: #4e85df;
   padding: 0.75em 1.25rem;
-  box-shadow: 3px 3px 0 0 #ffffff;
-  transition: box-shadow 0.2s ease-in-out;
+  box-shadow: 0 0 0 0 #ffffff;
 }
 
 .createButton:hover {
-  box-shadow: 0 0 0 0 #ffffff;
+  box-shadow: 3px 3px 0 0 #ffffff;
+  transition: box-shadow 0.2s ease-in-out;
+  transition: color 0.02s ease-in-out;
+  color: white;
 }
 
 .created {
