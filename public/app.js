@@ -2,12 +2,15 @@ const app = new Vue({
     el: '#app',
     data: {
         url: '',
-        slug: '',
+        suffix: '',
+        error: '',
         created: null,
+        formVisible: true,
+        created: null
     },
     methods: {
         async createUrl() {
-            console.log(this.url, this.slug);
+            console.log(this.url, this.suffix);
             const response = await fetch('/url', {
                 method: 'POST',
                 headers: {
@@ -15,7 +18,7 @@ const app = new Vue({
                 },
                 body: JSON.stringify({
                     url: this.url,
-                    slug: this.slug || undefined,
+                    suffix: this.suffix || undefined,
                 })
             });
             this.created = await response.json();          

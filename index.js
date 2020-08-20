@@ -10,7 +10,7 @@ require('dotenv').config();
 
 const db = monk(process.env.MONGODB_URI);
 const urls = db.get('urls');
-urls.createIndex({ slug: 1 }, { unique: true });
+urls.createIndex({ suffix: 1 }, { unique: true });
 
 
 const app = express();
@@ -22,43 +22,43 @@ app.use(express.json());
 app.use(express.static("./public"));
 
 app.get('/:id', async(req, res) => {
-    const { id: slug } = req.params;
+    const { id: suffix } = req.params;
     try {
-        const url = await urls.findOne({ slug });
+        const url = await urls.findOne({ suffix });
         if (url) {
             res.redirect(url.url);
         }
-        res.redirect(`/?error=${slug} not found`);
+        res.redirect(`/?error=${suffix} not found`);
     } catch (error) {
         //res.redirect('/?error=Link not found');
     }
 });
 
 const schema = yup.object().shape({
-    slug: yup.string().trim().matches(/^[\w\-]+$/i),
+    suffix: yup.string().trim().matches(/^[\w\-]+$/i),
     url: yup.string().trim().url().required(),
 });
 
 app.post("/url", async(req, res, next) => {
-    let { slug, url } = req.body;
+    let { suffix, url } = req.body;
     try {
         await schema.validate({
-            slug,
+            suffix,
             url,
         });
-        if (!slug) {
-            slug = nanoid(5);
+        if (!suffix) {
+            suffix = nanoid(5);
         }
-        slug = slug.toLowerCase();
+        suffix = suffix.toLowerCase();
         const newUrl = {
             url,
-            slug,
+            suffix,
         };
         const created = await urls.insert(newUrl);
         res.json(created);
     } catch (error) {
         if (error.message.startsWith('E11000')) {
-            error.message = 'Slug in use. 🍔';
+            error.message = 'Suffix in use. 🍔';
         }
         next(error);
     }

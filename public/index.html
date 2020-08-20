@@ -3,24 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>URL Shrinker</title>
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech&display=swap" rel="stylesheet"> 
+  <title>cdg.sh</title>
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="http://ez-css.now.sh/">
 </head>
 <body>
   <header>
-      <h1>URL Shrinker</h1>
   </header>
   <main id="app">
-    <form @submit.prevent="createUrl()">
-      <input type="url" name="url" id="url" placeholder="Url" v-model="url" required>
-      <input type="text" name="slug" id="slug" placeholder="Slug" v-model="slug">
-      <button type="submit">Create</button>
+    <form class="form" v-if="formVisible" @submit.prevent="createUrl()">
+      <div v-if="error" class="error">
+        {{error}}
+      </div>
+      <input class="input" type="text" v-model="url" name="url" id="url" placeholder="enter a url">
+      <input class="input" type="text" v-model="suffix" name="suffix" id="suffix" placeholder="enter a suffix">
+      <button type="submit" class="createButton">create</button>
     </form>
-    <pre v-if="created">
-      {{JSON.stringify(created, null, 2)}}
-    </pre>
+    <div v-if="created">
+      <p class="created">Your short url is: <a :href="created">{{created}}</a></p>
+    </div>
   </main>
   <script src="https://unpkg.com/vue@2.6.11/dist/vue.js"></script>
   <script src="app.js"></script>
