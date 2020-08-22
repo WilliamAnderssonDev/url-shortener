@@ -1,7 +1,7 @@
 const express = require('express');
-const cors = require('cors');
+//const cors = require('cors');
 const morgan = require('morgan');
-const helmet = require('helmet');
+//const helmet = require('helmet');
 const yup = require('yup');
 const monk = require('monk');
 const rateLimit = require('express-rate-limit');
@@ -10,7 +10,7 @@ const { nanoid } = require('nanoid');
 
 require('dotenv').config();
 
-const db = monk(process.env.MONGODB_URI);
+const db = monk(process.env.MONGO_URI);
 const urls = db.get('urls');
 urls.createIndex({
     suffix: 1
@@ -20,10 +20,10 @@ urls.createIndex({
 
 
 const app = express();
-app.enable('trust proxy');
+//app.enable('trust proxy');
 
 //app.use(helmet());
-app.use(morgan("common"));
+//app.use(morgan("common"));
 //app.use(cors());
 app.use(express.json());
 app.use(express.static("./public"));
@@ -90,6 +90,11 @@ app.post("/url", slowDown({
     }
 });
 
+const accountschema = yup.object().shape({
+    password: yup.string().trim().required(),
+    email: yup.string().trim().email().required(),
+});
+
 app.post("/signup", slowDown({
     windowMs: 10 * 1000,
     delayAfter: 1,
@@ -100,6 +105,16 @@ app.post("/signup", slowDown({
 }), async (req, res, next) => {
     let { password, email } = req.body;
     console.log("A:", this.email, this.password);
+    try {
+        await accountschema.validate({
+            password,
+            email,
+        });
+        console.log("B:", this.email, this.password);
+    } catch (error) {
+        console.log('ERROR');
+        next(error);
+    }
 });
 
 app.use((error, req, res, next) => {

@@ -6,7 +6,6 @@ const app = new Vue({
         error: '',
         created: null,
         formVisible: true,
-        created: null
     },
     methods: {
         async createUrl() {

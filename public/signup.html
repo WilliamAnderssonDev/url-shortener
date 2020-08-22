@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CHKN.link | Signup</title>
+    <title>Signup</title>
     <link rel="stylesheet" href="styles.css">
     <style>
       .footer {
@@ -21,9 +21,9 @@
 
 <body>
     <header>
-        <img src="logo.png" class="logo">
+        <!--<img src="logo.png" class="logo">-->
     </header>
-    <main id="app">
+    <main id="signup">
         <form class="form" v-if="formVisible" @submit.prevent="createAccount()">
             <div v-if="error" class="error">
                 ❌{{error.toUpperCase()}}❌
