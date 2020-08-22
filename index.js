@@ -22,9 +22,9 @@ urls.createIndex({
 const app = express();
 app.enable('trust proxy');
 
-app.use(helmet());
+//app.use(helmet());
 app.use(morgan("common"));
-app.use(cors());
+//app.use(cors());
 app.use(express.json());
 app.use(express.static("./public"));
 
