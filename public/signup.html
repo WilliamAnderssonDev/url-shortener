@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHKN.link | Signup</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+      .footer {
+       position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        color: white;
+        text-align: center;
+        background-color: transparent;
+      }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="logo.png" class="logo">
+    </header>
+    <main id="app">
+        <form class="form" v-if="formVisible" @submit.prevent="createAccount()">
+            <div v-if="error" class="error">
+                ❌{{error.toUpperCase()}}❌
+            </div>
+            <input required class="input" type="email" v-model="email" name="email" id="email" placeholder="enter your email">
+            <input required class="input" type="password" v-model="password" name="password" id="password" placeholder="enter a password">
+            <button type="submit" class="createButton">signup 🥚</button>
+        </form>
+        <div v-if="created">
+            <p class="created" style="font-size: 1.1rem">🐣 Your account is created! <a href="index.html">HOMEPAGE</a></p>
+        </div>
+    </main>
+    <div class="footer">
+      <p>Copyright &copy; William Andersson</p>
+      <a href="http://www.freepik.com" style="color: #595959;">Chicken vector designed by sentavio / Freepik</a>
+    </div>
+    
+    <script src="https://unpkg.com/vue@2.6.11/dist/vue.js"></script>
+    <script src="signup.js"></script>
+</body>
+
+</html>

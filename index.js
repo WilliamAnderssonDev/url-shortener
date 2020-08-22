@@ -64,7 +64,6 @@ app.post("/url", slowDown({
         suffix,
         url
     } = req.body;
-    console.log(suffix.length)
     try {
         await schema.validate({
             suffix,
@@ -91,6 +90,18 @@ app.post("/url", slowDown({
     }
 });
 
+app.post("/signup", slowDown({
+    windowMs: 10 * 1000,
+    delayAfter: 1,
+    delayMs: 500
+}), rateLimit({
+    windowMs: 10 * 1000,
+    max: 1
+}), async (req, res, next) => {
+    let { password, email } = req.body;
+    console.log("A:", this.email, this.password);
+});
+
 app.use((error, req, res, next) => {
     if (error.status) {
         res.status(error.status);
@@ -103,7 +114,7 @@ app.use((error, req, res, next) => {
     });
 });
 
-const port = process.env.PORT || 80;
+const port = process.env.PORT || 5000 ;
 app.listen(port, () => {
     console.log(`Listening at http://localhost:${port}`);
 });
