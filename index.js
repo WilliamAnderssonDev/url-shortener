@@ -1,7 +1,6 @@
 const express = require('express');
-//const cors = require('cors');
+const cors = require('cors');
 const morgan = require('morgan');
-//const helmet = require('helmet');
 const yup = require('yup');
 const monk = require('monk');
 const rateLimit = require('express-rate-limit');
@@ -21,11 +20,10 @@ const accounts = db.get('accounts');
 accounts.createIndex({ email: 1 }, { unique: true });
 
 const app = express();
-//app.enable('trust proxy');
+app.enable('trust proxy');
 
-//app.use(helmet());
-//app.use(morgan("common"));
-//app.use(cors());
+app.use(morgan("common"));
+app.use(cors());
 app.use(express.json());
 app.use(express.static("./public"));
 
